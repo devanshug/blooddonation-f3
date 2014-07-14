@@ -1,0 +1,43 @@
+Problems
+No Details of FB User viz., bloodgroup, day, month, year, state, city, mobile, pic?
+FB Users are not included in the Registered Donor List
+What will happen if someone enters incorrect Token in the url itself?						Done
+If the user is not logged in and if anyone posts the data in urgent requirement what will happen?			Done
+After resending the incorrect information back to the form they set as the default values			Done
+Login error on fail.				Done
+"Your Response has been saved." Not showing					Done
+If someone tries to login with the correct access token even when he is logged In			Done
+Validate Captcha Code During Registeration procedure and Urgent Blood Requirement procedure.			Done
+
+Problems in future
+Any user with name of anonymous_icon can upload a pic, thereby causing problem
+
+Ideas
+Paginating the Urgent Blood Requirements.				Done
+FB User Pic.
+Captcha Code from Fat Free Framework.
+Add Pic to the Urgent Requirements
+Adding Captcha to the Login for additional Security
+Validating Captcha on the server side					Done
+Email Verification System to correctly validate user.
+FB User Data Filling of important things, like BloodGroup, City, Mobile Number and City.
+
+Tasks
+Seperate codes into different files.									Mostly
+Adequately commenting the code.											Mostly
+Removing Debug Codes.													Mostly
+Check Schema correctly													Done
+Filter and Clear Directory Structure
+Upload to Github
+Deployment
+Change App Domain, Website URL after Deployment
+Adding CONSTANTS to the globals.ini, like App_ID, App_Secret			Done
+
+Admin Panel Ideas
+Adding Tasks
+Adding Problems
+Adding Ideas
+Changing Banner
+Changing Logo Banner
+Increase Paginate Length
+Change Captcha Code - Captcha By API and Captcha By Framework.

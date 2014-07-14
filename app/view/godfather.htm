@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Blooddonation</title>
+        <script type="text/javascript" src="public/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="public/js/fblogin.js"></script>
+        <script type="text/javascript" src="public/js/requests.js"></script>
+        <link rel="stylesheet" type="text/css" href="public/css/style.css"/>
+    </head>
+    <body>
+        <div id="main-container">
+            <nav id="topnav" class="topnav">
+                <include href="nav.htm" />
+            </nav>
+            <div class="clear"></div>
+				<check if="{{ @banner }}">
+					<true>
+						<div id="banner">
+							<include href="banner.htm" />
+						</div>
+					</true>
+				</check>
+            <div id="content-area">
+                <div id="content">
+					<check if="isset(@pagename)"> <true> <include href="{{@pagename}}" /> </true> </check>
+                </div>
+                <div id="rightarea">
+                    <include href="donorlist.htm" />
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="footer">
+                <include href="footer.htm" />
+            </div>
+        </div>
+    </body>
+</html>

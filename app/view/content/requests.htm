@@ -1,0 +1,22 @@
+<check if="isset(@response_message)"><true>{{@response_message}}</true></check>
+<check if="isset(@logged_in) && @logged_in"><true><h2>Welcome {{@username}}!</h2></true></check>
+<div id="request_change">
+<h1>Urgent Requirements for blood</h1>
+<ul class="quotes">
+	<repeat group="{{ @urgent }}" value="{{ @request }}">
+        <div class="post">
+            <div class="post-container">
+                <li class="message">
+					<div id="message-body">{{ @request->message }}</div>
+                    <ul class="message_section">
+                        <li class="author">help for {{ @request->name }}, {{ @request->bloodgroup }}</li>
+                        <li class="author">asked by {{ @request->username }} from {{ @request->city }}, {{ @request->state }} ({{ @request->mobile }})</li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+	</repeat>
+</ul>
+<check if="isset(@prev_requests)"><button id="prev_requests" style="margin: 0px; padding:0px; background-color: transparent; border: none; " onclick="loadRequests({{@prev_requests}});"><img src="public/images/back.png" alt="{{@prev_requests}}" height="50%" width="50%"/></button></check>
+<check if="isset(@next_requests)"><button id="next_requests" style="margin: 0px; padding:0px; background-color: transparent; border: none;" onclick="loadRequests({{@next_requests}});"><img src="public/images/next.png" alt="{{@next_requests}}" height="50%" width="50%"/></button></check>
+</div>

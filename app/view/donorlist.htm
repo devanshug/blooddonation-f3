@@ -1,0 +1,15 @@
+<div id="rightarea-content">
+    <table id="register_table">
+        <th id="heading" class="table_title">Registered Donors</th>
+		<repeat group="{{ @donorlist }}" value="{{ @groupname }}" >
+                <tr>
+                    <td>
+                        {{ @groupname.group }}
+                    </td>
+                    <td>
+                        {{ @groupname.count }}
+                    </td>
+                </tr>
+		</repeat>
+    </table>
+</div>
