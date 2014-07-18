@@ -18,6 +18,7 @@ Done	Date Validation Fails if date is greater than present time.
 ----	A Lock or Buffered Requests must be passed to appjs.js in case of changing states. (No Clue)
 Done	Images Uploaded must be changed to icons on the server side. (No Clue)
 
+http://foysalmamun.wordpress.com/2013/03/27/fat-free-crud-with-mvc-tutorial/
 Ideas
 Done	Paginating the Urgent Blood Requirements.
 Done	FB User Pic.
