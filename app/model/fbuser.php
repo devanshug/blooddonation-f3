@@ -24,15 +24,19 @@ class FBUser extends DB\SQL\Mapper {
 		$this->load(array('username=?',$username));
 		return $this->query;
     }
+	
+	public function selectByUsername($username) {
+		return $this->select('pic', array('username=?',$username));
+	}
  
     public function edit($username) {
-        $this->load(array('id=?',$username));
-        $this->copyFrom('POST');
+        $this->load(array('username=?',$username));
+        $this->copyFrom('fbuser');
         $this->update();
     }
  
     public function delete($username) {
-        $this->load(array('id=?',$username));
+        $this->load(array('username=?',$username));
         $this->erase();
     }
 }

@@ -21,7 +21,7 @@
 	<check if="@logged_in">
 		<true>
 			<li><a href="urgent">Urgent Requirement</a></li>
-			<li><a href="logout" <check if="isset(@type) && @type=='facebook'"><true>onclick="FBLogout();"</true></check> >Logout</a></li>
+			<li><check if="isset(@type) && @type=='facebook'"><true><a href="#" onclick="FBLogout();"></true><false><a href="logout" onclick="FBLogout();"></false></check>Logout</a></li>
 		</true>
 		<false>
 			<li><a href="login">Login</a></li>

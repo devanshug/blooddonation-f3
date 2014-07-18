@@ -3,20 +3,23 @@
 <div id="request_change">
 <h1>Urgent Requirements for blood</h1>
 <ul class="quotes">
-	<repeat group="{{ @urgent }}" value="{{ @request }}">
+	<repeat group="{{ @urgent }}" value="{{ @request }}" counter="{{ @counter }}">
         <div class="post">
             <div class="post-container">
                 <li class="message">
+					<div id="message-icon"><img src="{{@pics[@counter-1]}}" style="width:60px; height:50px; float:left; margin: 0px 10px 10px 10px;" /></div>
 					<div id="message-body">{{ @request->message }}</div>
                     <ul class="message_section">
                         <li class="author">help for {{ @request->name }}, {{ @request->bloodgroup }}</li>
-                        <li class="author">asked by {{ @request->username }} from {{ @request->city }}, {{ @request->state }} ({{ @request->mobile }})</li>
+                        <li class="author">asked by {{ @request->username }} at {{ @request->location }}</li>
+						<li class="author">in {{ @request->city }}, {{ @request->state }} ({{ @request->mobile }})</li>
                     </ul>
                 </li>
             </div>
         </div>
 	</repeat>
+	</loop>
 </ul>
-<check if="isset(@prev_requests)"><button id="prev_requests" style="margin: 0px; padding:0px; background-color: transparent; border: none; " onclick="loadRequests({{@prev_requests}});"><img src="public/images/back.png" alt="{{@prev_requests}}" height="50%" width="50%"/></button></check>
-<check if="isset(@next_requests)"><button id="next_requests" style="margin: 0px; padding:0px; background-color: transparent; border: none;" onclick="loadRequests({{@next_requests}});"><img src="public/images/next.png" alt="{{@next_requests}}" height="50%" width="50%"/></button></check>
+<check if="isset(@prev_requests)"><button id="prev_requests" style="margin: 30px 40px 30px 40px; padding:0px; background-color: transparent; border: none; " onclick="loadRequests({{@prev_requests}});"><img src="public/images/back.png" alt="{{@prev_requests}}"/></button></check>
+<check if="isset(@next_requests)"><button id="next_requests" style="margin: 30px 40px 30px 40px; padding:0px; background-color: transparent; border: none;" onclick="loadRequests({{@next_requests}});"><img src="public/images/next.png" alt="{{@next_requests}}"/></button></check>
 </div>

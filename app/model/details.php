@@ -25,6 +25,10 @@ class Details extends DB\SQL\Mapper {
 		return $this->query;
     }
 	
+	public function selectByUsername($username) {
+		return $this->select('pic', array('username=?',$username));
+	}
+	
     public function edit($id) {
         $this->load(array('id=?',$id));
         $this->copyFrom('POST');

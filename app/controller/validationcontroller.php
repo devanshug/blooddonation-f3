@@ -6,9 +6,9 @@ class ValidationController extends Controller
 	public function userName($username)
 	{
 		$error = NULL;
-		if(strlen($username) < 2)
+		if(!(strlen($username) >= 4 && strlen($username) <= 10))
 		{
-			$error = 'Doesn\'t sound like a valid username, please check!!!';
+			$error = 'UserName Length must be 4<=length(username)<=10';
 		}
 		if(!preg_match('/^[a-zA-Z]+$/', $username))
 		{
@@ -19,59 +19,54 @@ class ValidationController extends Controller
 		{
 			$error = 'Username Exists';
 		}
-		//echo 'ERROR (In UserName) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
 	public function name($name)
 	{
 		$error = NULL;
-		if(strlen($name) < 2)
+		if(!(strlen($name) >= 2 && strlen($name) <= 10))
 		{
-			$error = 'Doesn\'t sound like a valid name, please check!!!';
+			$error = 'Name length must be 2<=length(name)<=10';
 		}
 		if(!preg_match('/^[a-zA-Z]+$/', $name))
 		{
 			$error = 'Invalid Name must match ^[a-zA-Z]+$';
 		}
-		//echo 'ERROR (In Name) ->'.$error.'<br/>';										//DEBUG
 		$this->error = $error;
 		return $error;
 	}
 	public function fullname($fullname)
 	{
 		$error = NULL;
-		if(strlen($fullname) < 2)
+		if(!(strlen($fullname) >= 4 && strlen($fullname) <= 20))
 		{
-			$error = 'Doesn\'t sound like a valid name, please check!!!';
+			$error = 'Name length must be 4<=length(name)<=20';
 		}
 		if(!preg_match('/^[a-zA-Z ]+$/', $fullname))
 		{
 			$error = 'Invalid Name must match ^[a-zA-Z ]+$';
 		}
-		//echo 'ERROR (In FullName) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
 	public function message($message)
 	{
 		$error = NULL;
-		if(strlen($message) < 10)
+		if(!(strlen($message) >= 10 && strlen($message) <= 50))
 		{
-			$error = 'Message Length must be >=10';
+			$error = 'Message length must be 10<=length(message)<=50';
 		}
-		//echo 'ERROR (In Message) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
 	public function location($location)
 	{
 		$error = NULL;
-		if(strlen($location) < 10)
+		if(!(strlen($location) >= 5 && strlen($location) <= 50))
 		{
-			$error = 'Location Message Length must be >=10';
+			$error = 'Location length must be 5<=length(location)<=50';
 		}
-		//echo 'ERROR (In Message) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
@@ -82,22 +77,28 @@ class ValidationController extends Controller
 		{
 			$error = 'Passwords Entered do not match, Please check again.';
 		}
-		if(strlen($password1)<5)
+		if(!preg_match('/^[a-zA-Z0-9]+$/', $password1))
 		{
-			$error = 'Password size must be >= 5';
+			$error = 'Password must match ^[a-zA-Z0-9]+$';
 		}
-		//echo 'ERROR (In Password) ->'.$error.'<br/>';									//DEBUG
+		if(!(strlen($password1) >= 5 && strlen($password1) <= 10))
+		{
+			$error = 'Password length must be 5<=length(pass)<=10';
+		}
 		$this->error = $error;
 		return $error;
 	}
 	public function email($email)
 	{
 		$error = NULL;
+		if(!(strlen($email) >= 5 && strlen($email) <= 50))
+		{
+			$error = 'Email length must be 5<=length(email)<=50';
+		}
 		if(!preg_match('/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/', $email))
 		{
 			$error = 'Invalid Email must match ^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$';
 		}
-		//echo 'ERROR (In Email) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
@@ -108,7 +109,6 @@ class ValidationController extends Controller
 		{
 			$error = 'Gender must be Male or Female';
 		}
-		//echo 'ERROR (In Gender) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
@@ -120,7 +120,6 @@ class ValidationController extends Controller
 		{
 			$error = 'BloodGroup entered not found.';
 		}
-		//echo 'ERROR (In BloodGroup) ->'.$error.'<br/>';								//DEBUG
 		$this->error = $error;
 		return $error;
 	}
@@ -132,7 +131,6 @@ class ValidationController extends Controller
 		{
 			$error = 'Entered city ('.$city.') not found in state ('.$state.')';
 		}
-		//echo 'ERROR (In Place) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
@@ -169,10 +167,18 @@ class ValidationController extends Controller
 			{
 				$error = 'Wrong date';
 			}
+			else if($day>=32 && $month%2==1)
+			{
+				$error = 'Wrong date';
+			}
 		}
 		else if($month<=12 && $month>=8)
 		{
 			if($day>=31 && $month%2==1)
+			{
+				$error = 'Wrong date';
+			}
+			else if($day>=32 && $month%2==0)
 			{
 				$error = 'Wrong date';
 			}
@@ -181,7 +187,27 @@ class ValidationController extends Controller
 		{
 			$error = 'Wrong date';
 		}
-		//echo 'ERROR (In Date) ->'.$error.'<br/>';										//DEBUG
+		if(!$error)
+		{
+			/* Validating Date if the person's age is between 18 and 100 or not. */
+			$currentDate = getDate();
+			$curr_day = $currentDate['mday'];
+			$curr_month = $currentDate['mon'];
+			$curr_year = $currentDate['year'];
+			if($year>1970)
+			{
+				$presenttimestamp = mktime(0, 0, 0, $curr_day, $curr_month, $curr_year-18);
+				$datetimestamp = mktime(0, 0, 0, $day, $month, $year);
+				if($presenttimestamp<$datetimestamp)
+				{
+					$error = 'Minimum age for blooddonation must be 18';
+				}
+			}
+			if($year<$curr_year-100)
+			{
+				$error = 'Its better not to donate';
+			}
+		}
 		$this->error = $error;
 		return $error;
 	}
@@ -190,58 +216,71 @@ class ValidationController extends Controller
 		$error = NULL;
 		if(strlen($mobile)!=10)
 		{
-			$error = 'Number should be of 10 digit';
+			$error = 'Mobile Number Length should be of 10 digit';
 		}
 		if(!preg_match('/^[0-9]+$/', $mobile))
 		{
 			$error = 'Invalid Number must match ^[0-9]+$';
 		}
-		//echo 'ERROR (In Mobile) ->'.$error.'<br/>';									//DEBUG
 		$this->error = $error;
 		return $error;
 	}
 	public function landline($landline)
 	{
 		$error = NULL;
+		if(!(strlen($landline) >= 5 && strlen($landline) <= 15))
+		{
+			$error = 'Landline Number Length must be 5<=length(landline)<=15';
+		}
 		if(!preg_match('/^[0-9]+$/', $landline))
 		{
 			$error = 'Invalid Landline Number must match ^[0-9]+$';
 		}
-		echo 'ERROR (In Landline) ->'.$error.'<br/>';
 		$this->error = $error;
 		return $error;
 	}
 	public function image($pic)
 	{
 		$error = NULL;
-		$type = $pic['type'];
-		$size = $pic['size'];
-		$error_code = $pic['error'];
-		$types = array('image/gif', 'image/jpeg', 'image/jpg', 'image/pjpeg', 'image/x-png', 'image/png');
-		if(!in_array($type, $types))
+		if(!is_array($pic) || !array_key_exists('type',$pic) || !array_key_exists('size',$pic) || !array_key_exists('error',$pic) || !array_key_exists('tmp_name',$pic) || !array_key_exists('name',$pic))
 		{
-			$error = 'Image File Type doesn\'t exist.';
+			$error = 'Image Parameter\'s Incorrect.';
 		}
-		if($size>1000000 && $size<0)
+		else
 		{
-			$error = 'Image File Size must be <1000000';
+			$type = $pic['type'];
+			$size = $pic['size'];
+			$error_code = $pic['error'];
+			$tmp_name = $pic['tmp_name'];
+			$types = array('image/gif', 'image/jpeg', 'image/jpg', 'image/pjpeg', 'image/x-png', 'image/png');
+			if(!file_exists($tmp_name))
+			{
+				$error = 'File Upload Not Successful';
+			}
+			if(!in_array($type, $types))
+			{
+				$error = 'Image File type doesn\'t exist.';
+			}
+			if($size>1000000 && $size<0)
+			{
+				$error = 'Image File size must be <1000000';
+			}
+			if($error_code!=0)
+			{
+				$error = 'Error Occurred During File Transmission : Error Code-'.$error_code;
+			}
 		}
-		if($error_code!=0)
-		{
-			$error = 'Error Occurred During File Transmission : Error Code-'.$error_code;
-		}
-		echo 'ERROR (In Image) ->'.$error.'<br/>';
 		$this->error = $error;
 		return $error;
 	}
-	public function captcha_validation($password, $random, $canEcho=true)
+	public function captcha($password, $random, $canEcho=true)
 	{
 		$error = NULL;
+		
 		/* Captcha Api Object -> uses api from captchas.net */
-		$captchas = new CaptchasDotNet('devanshug', '6HdMmG1EgKnJEOqHfQ5r9ywhkUbcM42UaeA0ffK1',
-								   $this->f3->get('CAP_API_PATH').'captchas',
-								   '3600','abcdefghkmnopqrstuvwxyz0123456789','6','240',
-								   '80','000088');
+		$captchas = new CaptchasDotNet('devanshug', '6HdMmG1EgKnJEOqHfQ5r9ywhkUbcM42UaeA0ffK1', $this->f3->get('CAP_API_PATH').'captchas',
+									   '3600', 'abcdefghkmnopqrstuvwxyz0123456789', '6', '240', '80', '000088');
+		
 		/* Check whether the request contains correct random or not. */
 		if ($canEcho && !$captchas->validate ($random))
 		{
@@ -262,6 +301,7 @@ class ValidationController extends Controller
 			$return = false;
 		}
 		$this->error = $error;
+		
 		if($canEcho)
 			echo $error;
 		else
@@ -270,6 +310,10 @@ class ValidationController extends Controller
 	public function getError()
 	{
 		return $this->error;
+	}
+	public function errorReset()
+	{
+		$this->error = NULL;
 	}
 }
 

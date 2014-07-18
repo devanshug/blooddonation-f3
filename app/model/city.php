@@ -16,7 +16,6 @@ class City extends DB\SQL\Mapper {
 		{
 			return $this->count(array('city_name=?',$city_name))>0;
 		}
-		echo $this->count(array('city_name=? and state_name=?',$city_name,$state_name));
 		return $this->count(array('city_name=? and state_name=?',$city_name,$state_name))>0;
 	}
 }

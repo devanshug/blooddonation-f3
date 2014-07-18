@@ -37,7 +37,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES ('check','12345'),('ddssukd','12345'),('devanshu','12345'),('dgjkkdfhkjfd','123456'),('ghkgjhgjh','12345'),('jfjjkdfhfdkkj','12345'),('jlkfdjlkd','12345'),('test','12345');
+INSERT INTO `auth_user` VALUES ('check','12345'),('ddssukd','12345'),('devanshu','12345'),('dgjkkdfhkjfd','123456'),('ghkgjhgjh','12345'),('jfjjkdfhfdkkj','12345'),('jlkfdjlkd','12345'),('starwars','12345'),('test','12345'),('testcheck','12345');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `details` (
 
 LOCK TABLES `details` WRITE;
 /*!40000 ALTER TABLE `details` DISABLE KEYS */;
-INSERT INTO `details` VALUES ('check','a@ggma.com','ff','ddd','A+','Male',1,1,1996,'Gujarat','Deesa','1234567890','bandar.jpg'),('ddssukd','gdhfd@ghds.cks','gfhkdf','dfhjkdf','B-','Female',23,12,1982,'Himachal Pradesh','Nahan','1234567890',''),('dgjkkdfhkjfd','dsk@djs.com','fdhkffjk','jfhdkjhdfk','A1+','Female',2,2,1996,'Delhi','Asola','1234567890','dgjkkdfhkjfd.jpg'),('ghkgjhgjh','jjfd@hkj.ckd','hfdkdfk','djldskfkdf','A2B+','Male',13,4,1987,'Himachal Pradesh','Nahan','1234567890',''),('jfjjkdfhfdkkj','gshd@ksd.cdd','hdskjdsjfsjk','dhjfhjkdfhjk','B-','Female',12,12,1970,'Jammu and Kashmir','Kathua','1234567890',''),('jlkfdjlkd','hjdf@hjks.vdjd','hhdfbd','hdskhskf','O+','Female',13,3,1982,'Chhattisgarh','Bemetra','1234567890',''),('test','test@t.com','test','test','A+','Male',1,1,1996,'Arunachal Pradesh','Naharlagun','1234567890','check.jpg');
+INSERT INTO `details` VALUES ('check','a@ggma.com','ff','ddd','A+','Male',1,1,1996,'Gujarat','Deesa','1234567890','bandar.jpg'),('ddssukd','gdhfd@ghds.cks','gfhkdf','dfhjkdf','B-','Female',23,12,1982,'Himachal Pradesh','Nahan','1234567890',''),('dgjkkdfhkjfd','dsk@djs.com','fdhkffjk','jfhdkjhdfk','A1+','Female',2,2,1996,'Delhi','Asola','1234567890','dgjkkdfhkjfd.jpg'),('ghkgjhgjh','jjfd@hkj.ckd','hfdkdfk','djldskfkdf','A2B+','Male',13,4,1987,'Himachal Pradesh','Nahan','1234567890',''),('jfjjkdfhfdkkj','gshd@ksd.cdd','hdskjdsjfsjk','dhjfhjkdfhjk','B-','Female',12,12,1970,'Jammu and Kashmir','Kathua','1234567890',''),('jlkfdjlkd','hjdf@hjks.vdjd','hhdfbd','hdskhskf','O+','Female',13,3,1982,'Chhattisgarh','Bemetra','1234567890',''),('starwars','starwar@war.star','star','war','A2B+','Female',7,10,1914,'Haryana','Gharaunda','1234567890','starwars.jpg'),('test','test@t.com','test','test','A+','Male',1,1,1996,'Arunachal Pradesh','Naharlagun','1234567890','check.jpg'),('testcheck','testcheck@tt.com','gdshs','djfhdfjk','A-','Male',16,2,1974,'Gujarat','Antaliya','1234567890','testcheck.jpg');
 /*!40000 ALTER TABLE `details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,6 +139,7 @@ CREATE TABLE `fbuser` (
   `lastname` varchar(20) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `name` varchar(40) NOT NULL,
+  `pic` varchar(120) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -149,7 +150,7 @@ CREATE TABLE `fbuser` (
 
 LOCK TABLES `fbuser` WRITE;
 /*!40000 ALTER TABLE `fbuser` DISABLE KEYS */;
-INSERT INTO `fbuser` VALUES ('devanshugupta91@gmail.com','Devanshu','Gupta','male','Devanshu Gupta');
+INSERT INTO `fbuser` VALUES ('devanshugupta91@gmail.com','Devanshu','Gupta','male','Devanshu Gupta','http://graph.facebook.com/751848744879174/picture?height=100&type=normal&width=100');
 /*!40000 ALTER TABLE `fbuser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +195,7 @@ CREATE TABLE `urgentblood` (
   `city` varchar(200) NOT NULL DEFAULT '',
   `message` varchar(400) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +204,7 @@ CREATE TABLE `urgentblood` (
 
 LOCK TABLES `urgentblood` WRITE;
 /*!40000 ALTER TABLE `urgentblood` DISABLE KEYS */;
-INSERT INTO `urgentblood` VALUES (1,'devanshu','A+','dgdf','1234567890','fgdf','Andaman and Nicobar Islands','Port','dfg'),(2,'devanshu','A1-','jhkjhkj','1234567890','fds','Arunachal Pradesh','Naharlagun','df'),(3,'devanshu','A+','aaa','1234567890','dffd','Andhra Pradesh','Amadalavalasa','dgfd'),(4,'devanshu','A1-','dfsdfsdf','1234567890','sfs','Arunachal Pradesh','Itanagar','dgfd'),(7,'test','A2B-','jhdskjfhdkjdf hfjdd','1234567890','fldhdfjhdjfk','Jammu and Kashmir','Leh','dshdghkgfd hljhjlfdhjkdf'),(8,'nitika22girl@gmail.com','O-','Bhadra Kali','1234567890','Hospital Main hai','Uttar Pradesh','Jhansi','Aray bhai khoon dedo nai to mar jayenge'),(9,'jlkfdjlkd','A1B-','Sultan Khalid','9999999999','City Hospital','Maharashtra','Mumbai','Sultan need lots of blood, please Help.'),(10,'jlkfdjlkd','B+','Humpty Sharma','1818181818','City Hospital','Himachal Pradesh','Keylong','My Husband met with an accident, please help');
+INSERT INTO `urgentblood` VALUES (1,'devanshu','A+','dgdf','1234567890','fgdf','Andaman and Nicobar Islands','Port','dfg'),(2,'devanshu','A1-','jhkjhkj','1234567890','fds','Arunachal Pradesh','Naharlagun','df'),(3,'devanshu','A+','aaa','1234567890','dffd','Andhra Pradesh','Amadalavalasa','dgfd'),(4,'devanshu','A1-','dfsdfsdf','1234567890','sfs','Arunachal Pradesh','Itanagar','dgfd'),(7,'test','A2B-','jhdskjfhdkjdf hfjdd','1234567890','fldhdfjhdjfk','Jammu and Kashmir','Leh','dshdghkgfd hljhjlfdhjkdf'),(9,'jlkfdjlkd','A1B-','Sultan Khalid','9999999999','City Hospital','Maharashtra','Mumbai','Sultan need lots of blood, please Help.'),(10,'jlkfdjlkd','B+','Humpty Sharma','1818181818','City Hospital','Himachal Pradesh','Keylong','My Husband met with an accident, please help'),(11,'test','A2+','dsghj hhjkghjdk','1818181818','fdkhkfdhkfhfdkjfd','Arunachal Pradesh','Pasighat','fdhjkgfdgjgdjfg hdushjk'),(12,'devanshugupta91@gmail.com','B+','starwar','1234567890','In the skies','Assam','Dhubri','help or some aliens from some unknwn stars\'ill win');
 /*!40000 ALTER TABLE `urgentblood` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -216,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-14 11:12:53
+-- Dump completed on 2014-07-16 15:48:14

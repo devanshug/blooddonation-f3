@@ -4,6 +4,7 @@ class Controller {
 	protected $f3;
 	protected $db;
 	protected $auth;
+	protected $fb;
 	function beforeRoute() {
 	}
 	function afterRoute() {
@@ -15,9 +16,11 @@ class Controller {
 						$f3->get('db_pass')
 					  );
 		$auth = new Authenticate($f3, $db);
+		$fb = new Facebook($f3, $db);
 		$this->f3 = $f3;
 		$this->db = $db;
 		$this->auth = $auth;
+		$this->fb = $fb;
 	}
 }
 
